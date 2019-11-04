@@ -6,3 +6,5 @@ Original version posted on inkscape forum here: http://www.inkscapeforum.com/vie
 was hacked together by me based on code provided by Jean Moreno on his blog.
 
 Was improved upon by Neon22 on the forum and later by Jens N. Lallensack.
+
+All contributors have agreed to release their contributions under the GPL.
