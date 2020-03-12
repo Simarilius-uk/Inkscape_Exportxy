@@ -31,6 +31,8 @@ class TemplateEffect(inkex.Effect):
     def effect(self):
         for node in self.selected.items():
             output_all = output_nodes = ""
+            output_nodes_xy = {'x': "", 'y': ""}
+            float_value = 2
             for id, node in self.selected.items():
                 if node.tag == inkex.addNS('path','svg'):
                     output_all += ""
@@ -40,7 +42,12 @@ class TemplateEffect(inkex.Effect):
                     p = cubicsuperpath.parsePath(d)
                     for subpath in p:
                         for csp in subpath:
+                            output_nodes_xy['x'] += str(round(csp[1][0], float_value)) + ", "
+                            output_nodes_xy['y'] += str(round(csp[1][1], float_value)) + ", "
                             output_nodes += str(csp[1][0]) + "\t" + str(csp[1][1]) + "\n"
+            sys.stderr.write("XY list:\n")
             sys.stderr.write(output_nodes)
+            sys.stderr.write("\n\nPython dict:\n")
+            sys.stderr.write("{\n'x':[" + output_nodes_xy['x'][:-2] + "],\n'y':[" + output_nodes_xy['y'][:-2] + "]\n}\n")
 effect = TemplateEffect()
 effect.affect()
