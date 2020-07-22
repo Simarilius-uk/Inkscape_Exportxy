@@ -17,8 +17,8 @@
 #
 import inkex
 import sys
-import simpletransform
-import cubicsuperpath
+from inkex import paths
+from inkex import transforms
 
 def warn(*args, **kwargs):
     pass
@@ -35,12 +35,12 @@ class TemplateEffect(inkex.Effect):
                 if node.tag == inkex.addNS('path','svg'):
                     output_all += ""
                     output_nodes += ""
-                    simpletransform.fuseTransform(node)
+                    node.apply_transform()
                     d = node.get('d')
-                    p = cubicsuperpath.parsePath(d)
+                    p = paths.CubicSuperPath(d)
                     for subpath in p:
                         for csp in subpath:
                             output_nodes += str(csp[1][0]) + "\t" + str(csp[1][1]) + "\n"
             sys.stderr.write(output_nodes)
 effect = TemplateEffect()
-effect.affect()
+effect.run()
