@@ -1,5 +1,4 @@
-
-#!/usr/bin/env python
+#!/usr/bin/env python3
 #
 # curve xy co-ordinate export
 # Authors:
@@ -42,5 +41,5 @@ class TemplateEffect(inkex.Effect):
                         for csp in subpath:
                             output_nodes += str(csp[1][0]) + "\t" + str(csp[1][1]) + "\n"
             sys.stderr.write(output_nodes)
-effect = TemplateEffect()
-effect.run()
+TemplateEffect().run()
+sys.exit(0) #helps to keep the selection
